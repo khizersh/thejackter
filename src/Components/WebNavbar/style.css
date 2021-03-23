@@ -1,0 +1,74 @@
+.logo {
+  height: 60px;
+  margin: 5px 0px px 5px !important;
+}
+.main-webnavbar {
+  height: 100px;
+  width: 100%;
+}
+.icon {
+  /* margin: 0px 25px 0px 25px !important; */
+  font-size: 16px;
+}
+.icon-Hover:hover {
+  fill: black !important;
+  cursor: pointer;
+}
+.icon_name {
+  font-size: 12px;
+}
+.nav-item {
+  font-size: 18px !important;
+  font-weight: 400;
+}
+.nav-item:hover {
+  cursor: pointer;
+  border-bottom: 1px solid red;
+}
+.search-icon {
+  margin-left: -20px;
+}
+.search-bar {
+  background-color: #f2f2f2 !important;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  width: auto !important;
+  outline: none !important;
+}
+/* Media Queries */
+@media (max-width: 1200px) {
+  .nav-item {
+    font-size: 15px !important;
+    font-weight: 500;
+  }
+  .divider {
+    width: 100% !important;
+  }
+}
+@media (max-width: 990px) {
+  .divider {
+    width: 100% !important;
+  }
+  .nav-item {
+    font-size: 11px !important;
+    font-weight: 400;
+    margin: 4px !important;
+  }
+}
+@media (max-width: 768px) {
+  .topNavbar {
+    display: none !important;
+    visibility: hidden !important ;
+  }
+  .navItemsList {
+    display: none !important;
+  }
+  .nav-searchBar_Wrapper {
+    width: 100% !important;
+    justify-content: start !important;
+  }
+  .search-bar {
+    width: 100% !important;
+  }
+}
