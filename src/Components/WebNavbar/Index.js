@@ -25,7 +25,7 @@ const WebNavbar = () => {
       >
         <div className="row topNavbar  ">
           <div className="col-md-4 d-flex justify-content-start ">
-            <p className="nav-item">Women</p>
+            <p className="nav-item test">Women</p>
             <p className="ml-4 nav-item">Men</p>
           </div>
           <div className="col-md-4 d-flex justify-content-center">

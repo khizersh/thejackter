@@ -1,0 +1,76 @@
+.main {
+  background: #fff;
+  height: 100vh;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-right: 2px solid orangered;
+  width: 90%;
+  animation-duration: 1s;
+  animation-name: moveFromLeft;
+}
+@keyframes moveFromLeft {
+  to {
+    transform: translateX(0);
+  }
+  from {
+    transform: translateX(-100px);
+  }
+}
+.close-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.side-nav-link {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+.custom-drop-down {
+  display: flex;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+.drop-down-icon {
+  display: flex;
+}
+.sidebar-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f2f2f2 !important;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+.footerItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.footerIcons {
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 25px;
+  padding: 5px 8px 5px 8px;
+  font-size: 12px;
+}
+
+.item-name {
+  font-size: 12px;
+}
+
+@media (max-width: 576px) {
+  .main {
+    width: 90%;
+    font-size: 1.5rem;
+    /* text-align: center; */
+  }
+}

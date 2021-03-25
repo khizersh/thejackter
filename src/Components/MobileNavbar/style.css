@@ -1,3 +1,11 @@
 .mobileLogo {
-height: 30px;
+  height: 30px;
+}
+.show {
+  animation-name: "fadeIn";
+  animation-duration: 5s;
+  display: block;
+}
+.hide {
+  display: none;
 }

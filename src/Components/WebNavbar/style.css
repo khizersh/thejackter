@@ -56,15 +56,18 @@
     margin: 4px !important;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .topNavbar {
     display: none !important;
     visibility: hidden !important ;
   }
+  .searchBar_Wrapper {
+    display: none !important;
+  }
   .navItemsList {
     display: none !important;
   }
-  .nav-searchBar_Wrapper {
+  .searchBar_Wrapper {
     width: 100% !important;
     justify-content: start !important;
   }

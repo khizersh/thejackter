@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { GiHamburgerMenu } from "react-icons/gi";
-
+import Sidebar from "../Sidebar/Index";
 import { RiPagesLine } from "react-icons/ri";
 import "./style.css";
+import { Animated } from "react-animated-css";
 
+import { BsSearch } from "react-icons/bs";
 const MobileNavbar = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
   return (
     <div className="main-MobileNavbar">
       <div className="divider d-flex justify-content-between align-items-center  mt-4 w-100">
         <div>
           <div className="col-md-4 d-flex justify-content-center align-items-center">
-            <GiHamburgerMenu />
+            <GiHamburgerMenu onClick={() => setShowSidebar(!showSidebar)} />
 
             <img
               className="mobileLogo ml-3"
@@ -24,7 +27,7 @@ const MobileNavbar = () => {
           <div className="col-md-4 d-flex align-items-center justify-content-center ">
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
               <BiUser className="icon" />
-              <p className="icon_name">Sign In</p>
+              <p className="icon_name ">Sign In</p>
             </span>
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
               <RiPagesLine className="icon" />
@@ -33,6 +36,17 @@ const MobileNavbar = () => {
           </div>
         </div>
       </div>
+      <div className="col-md-6 d-flex justify-content-center searchBarMobile_Wrapper">
+        <div className="d-flex justify-content-end align-items-center w-100">
+          <input placeholder="Search" className="search-bar" />
+          <BsSearch className="search-icon" />
+        </div>
+      </div>
+      {/* {showSidebar === true && ( */}
+      <div className={`${showSidebar ? "show" : "hide"}`}>
+        <Sidebar setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
+      </div>
+      {/* )} */}
     </div>
   );
 };
