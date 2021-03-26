@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-
+/src/Utils/todo.js
 # production
 /build
 
