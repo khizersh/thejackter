@@ -1,4 +1,4 @@
-import {  BrowserRouter as Router ,Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
 import './App.css';
@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/product/">
+          <Route exact path="/product/:slug">
             <ProductDescription />
           </Route>
           {/* <Route path="/about">
