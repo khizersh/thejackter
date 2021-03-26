@@ -1,13 +1,33 @@
+import {  BrowserRouter as Router ,Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import NavbarWrapper from "./Components/NavbarWrapper/Index";
-import ProductDescription from "./Views/ProductDescription";
+
 import './App.css';
+
+import NavbarWrapper from "./Components/NavbarWrapper/Index";
+import Home from "./Views/Home";
+import ProductDescription from "./Views/ProductDescription";
 
 function App() {
   return (
     <div className="App">
-      <NavbarWrapper />
-      <ProductDescription />
+      <Router>
+        <NavbarWrapper />
+        <Switch>
+          <Route path="/">
+            <Home />
+          </Route>
+          <Route path="/product/:slug">
+            <ProductDescription />
+          </Route>
+          {/* <Route path="/about">
+          <About />
+        </Route>
+        <Route path="/users">
+          <Users />
+        </Route> */}
+        </Switch>
+      </Router>
+      {/* <ProductDescription /> */}
     </div>
   );
 }
