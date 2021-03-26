@@ -1,26 +1,28 @@
 import SliderComponent from "../../Components/Slider";
-import Footer from "../../Components/Footer"
-const slides = [
-    {
-        title: 'First item', description: 'Lorem ipsum', button: "Read More",
-        image: "https://i.imgur.com/ZXBtVw7.jpg",
-    },
-    {
-        title: 'Second item', description: 'Lorem ipsum', button: "Read More",
-        image: "https://i.imgur.com/ZXBtVw7.jpg",
-    },
-    {
-        title: 'Third item', description: 'Lorem ipsum', button: "Read More",
-        image: "https://i.imgur.com/ZXBtVw7.jpg",
-    }
-];
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  CardImg,
+  CardSubtitle,
+  CardTitle,
+} from "reactstrap";
+import "./style.css";
+import { slides, products } from "../../constant";
+import { Link } from "react-router-dom";
+import CardFour from "../../Components/Cards/card-four";
+
 const Home = () => {
-    return (
-        <div className="mt-4">
-            <SliderComponent slides={slides} />
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="mt-4">
+      <SliderComponent slides={slides} />
+      <div className="container">
+        <h1 className="text-center font-weight-bold mt-5">New Arrival</h1>
+        <CardFour products={products} />
+      </div>
+    </div>
+  );
 };
 
 export default Home;
