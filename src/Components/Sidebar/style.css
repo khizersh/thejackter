@@ -9,6 +9,7 @@
   width: 90%;
   animation-duration: 1s;
   animation-name: moveFromLeft;
+  z-index: 99999;
 }
 @keyframes moveFromLeft {
   to {

@@ -1,7 +1,7 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
-
+import Footer from "../../Components/Footer"
 import DescriptionTabs from "../../Components/DescriptionTabs";
 import "./style.css";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -152,6 +152,7 @@ const ProductDescription = () => {
         <section className="mt-5">
           <DescriptionTabs />
         </section>
+      <Footer/>
       </div>
     </div>
   );

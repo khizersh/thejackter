@@ -4,7 +4,7 @@ import WebNavbar from "../WebNavbar/Index";
 import "./style.css";
 const Index = () => {
   return (
-    <div className="">
+    <div className="mt-3">
       <div className="mob-navbar">
         <MobileNavbar />
       </div>

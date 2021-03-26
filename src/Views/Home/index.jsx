@@ -1,4 +1,5 @@
 import SliderComponent from "../../Components/Slider";
+import Footer from "../../Components/Footer"
 const slides = [
     {
         title: 'First item', description: 'Lorem ipsum', button: "Read More",
@@ -17,6 +18,7 @@ const Home = () => {
     return (
         <div className="mt-4">
             <SliderComponent slides={slides} />
+            <Footer />
         </div>
     );
 };
