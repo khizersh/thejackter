@@ -4,14 +4,13 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "../Sidebar/Index";
 import { RiPagesLine } from "react-icons/ri";
 import "./style.css";
-import { Animated } from "react-animated-css";
 
 import { BsSearch } from "react-icons/bs";
 const MobileNavbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   return (
     <div className="main-MobileNavbar">
-      <div className="divider d-flex justify-content-between align-items-center  mt-4 w-100">
+      <div className="divider d-flex justify-content-between align-items-center   w-100">
         <div>
           <div className="col-md-4 d-flex justify-content-center align-items-center">
             <GiHamburgerMenu onClick={() => setShowSidebar(!showSidebar)} />

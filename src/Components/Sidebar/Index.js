@@ -27,7 +27,7 @@ const Index = ({ setShowSidebar }) => {
         </div>
 
         <div className="mt-5">
-          <p className="side-nav-link test">New</p>
+          <p className="side-nav-link ">New</p>
 
           {/* Accordion / Drop Down */}
           <div>

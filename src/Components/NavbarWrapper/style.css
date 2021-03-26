@@ -1,8 +1,12 @@
 .mob-navbar {
   display: none !important;
+  
 }
 @media (max-width: 767px) {
   .mob-navbar {
     display: block !important;
+  }
+  .web-navbar {
+    display: none !important;
   }
 }

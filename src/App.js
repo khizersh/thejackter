@@ -1,12 +1,12 @@
-import logo from "./logo.svg";
 import "bootstrap/dist/css/bootstrap.css";
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
-import WebNavbar from "./Components/WebNavbar/Index";
+import ProductDescription from "./Views/ProductDescription";
 
 function App() {
   return (
     <div className="App">
       <NavbarWrapper />
+      <ProductDescription />
     </div>
   );
 }

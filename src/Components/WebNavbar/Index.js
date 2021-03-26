@@ -17,18 +17,14 @@ const WebNavbar = () => {
     );
   }, [isMobile]);
   return (
-    <div className="main-webnavbar">
-      <div
-        className={`${
-          isMobile ? "container" : "container-fluid"
-        } mt-4 `}
-      >
-        <div className="row topNavbar  ">
-          <div className="col-md-4 d-flex justify-content-start ">
-            <p className="nav-item test">Women</p>
+    <div className="main-webnavbar ">
+      <div className={`${isMobile ? "container" : "container-fluid"}  `}>
+        <div className="row topNavbar justify-content-between">
+          <div className=" d-flex justify-content-start ">
+            <p className="nav-item ">Women</p>
             <p className="ml-4 nav-item">Men</p>
           </div>
-          <div className="col-md-4 d-flex justify-content-center">
+          <div className=" d-flex justify-content-center">
             <div>
               <img
                 className="logo"
@@ -37,7 +33,7 @@ const WebNavbar = () => {
               />
             </div>
           </div>
-          <div className="col-md-4 d-flex justify-content-end">
+          <div className=" d-flex justify-content-end">
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
               <BiUser className="icon" />
               <p className="icon_name">Sigin In</p>
@@ -57,11 +53,7 @@ const WebNavbar = () => {
 
       {/* Bottom  */}
 
-      <div
-        className={`${
-          isMobile ? "container" : "container-fluid"
-        } mt-4 `}
-      >
+      <div className={`${isMobile ? "container" : "container-fluid"} `}>
         <div className="row align-items-center justify-content-center">
           <div className="col-md-6 d-flex justify-content-start align-items-center mt-2 navItemsList  ">
             <p className="nav-item ">New Arrivals</p>

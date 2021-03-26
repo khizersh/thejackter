@@ -4,11 +4,13 @@ import WebNavbar from "../WebNavbar/Index";
 import "./style.css";
 const Index = () => {
   return (
-    <div>
+    <div className="pt-3">
       <div className="mob-navbar">
         <MobileNavbar />
       </div>
-      <WebNavbar />
+      <div className="web-navbar">
+        <WebNavbar />
+      </div>
     </div>
   );
 };
