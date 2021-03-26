@@ -1,4 +1,3 @@
-import "./style.css";
 import SliderComponent from "../../Components/Slider";
 const slides = [
     {

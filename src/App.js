@@ -13,10 +13,10 @@ function App() {
       <Router>
         <NavbarWrapper />
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/product/:slug">
+          <Route exact path="/product/">
             <ProductDescription />
           </Route>
           {/* <Route path="/about">
