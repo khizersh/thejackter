@@ -55,7 +55,7 @@ const WebNavbar = () => {
 
       <div className={`${isMobile ? "container" : "container-fluid"} `}>
         <div className="row align-items-center justify-content-center">
-          <div className="col-md-6 d-flex justify-content-start align-items-center mt-2 navItemsList  ">
+          <div className="col-md-6 d-flex justify-content-start align-items-center mt-2 navItemsList p-0  ">
             <p className="nav-item ">New Arrivals</p>
             <p className="nav-item ml-3">Clothing</p>
             <p className="nav-item ml-3">Active {"&"} Swim</p>

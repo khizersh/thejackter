@@ -65,7 +65,7 @@ const index = () => {
           </div>
         </div>
         <p className="mt-5">
-          © 2021 Designed by The Jacker.All Copyrights Resevered
+          © 2021 Designed by The Jacker.All Copyrights Reserved
         </p>
       </div>
     </div>

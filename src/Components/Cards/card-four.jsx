@@ -1,8 +1,11 @@
 import { Button, Card, CardBody, CardImg } from "reactstrap";
 import "./style.css";
 import { Link } from "react-router-dom";
+import CustomModal from "../CustomModal";
+import { useState } from "react";
 
 const CardFour = (props) => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="row mt-2">
       {props?.products?.length &&
@@ -21,7 +24,10 @@ const CardFour = (props) => {
                   </Link>
                 </div>
                 <div className="product-btn-wrapper">
-                  <Button className="add-to-cart-btn btn-block btn-sm">
+                  <Button
+                    className="add-to-cart-btn btn-block btn-sm"
+                    onClick={() => setShowModal(!showModal)}
+                  >
                     Quick View
                   </Button>
                 </div>
@@ -38,6 +44,7 @@ const CardFour = (props) => {
             </Card>
           </div>
         ))}
+      {showModal && <CustomModal showModal={showModal} setShowModal={setShowModal}/>}
     </div>
   );
 };
