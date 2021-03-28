@@ -226,15 +226,11 @@
   text-align: center;
 }
 
-.slider-content .inner {
-  padding: 0 70px;
-  box-sizing: border-box;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+.slider-content {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slider-content .inner button {
@@ -301,10 +297,10 @@
 }
 
 @media (max-width: 640px) {
-  .slider-wrapper,
+  /* .slider-wrapper,
   .slide {
     height: calc(80vh - 75px);
-  }
+  } */
 }
 
 @media (max-height: 600px) {
