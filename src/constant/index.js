@@ -129,3 +129,5 @@ export const Images = [
     thumbnail: "https://picsum.photos/id/1015/100/100/",
   },
 ];
+
+export const CURRENCY = "Rs.";

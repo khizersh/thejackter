@@ -1,8 +1,10 @@
-import { Button, Card, CardBody, CardImg } from "reactstrap";
-import "./style.css";
-import { Link } from "react-router-dom";
-import CustomModal from "../CustomModal";
 import { useState } from "react";
+import { Button, Card, CardBody, CardImg } from "reactstrap";
+import { Link } from "react-router-dom";
+
+import CustomModal from "../CustomModal";
+import { CURRENCY } from "../../constant";
+import "./style.css";
 
 const CardFour = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -38,13 +40,13 @@ const CardFour = (props) => {
                 </span>
                 <br />
                 <span tag="h6" className="mb-2 product-price">
-                  Rs.{pro?.price}
+                  {CURRENCY}{pro?.price}
                 </span>
               </CardBody>
             </Card>
           </div>
         ))}
-      {showModal && <CustomModal showModal={showModal} setShowModal={setShowModal}/>}
+      {showModal && <CustomModal showModal={showModal} setShowModal={setShowModal} />}
     </div>
   );
 };

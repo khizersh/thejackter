@@ -1,11 +1,13 @@
-import React from "react";
-import ImageGallery from "react-image-gallery";
-import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
-import Footer from "../../Components/Footer"
-import DescriptionTabs from "../../Components/DescriptionTabs";
-import "./style.css";
-import "react-image-gallery/styles/css/image-gallery.css";
 import { FormGroup, Input, Label } from "reactstrap";
+import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+
+import Footer from "../../Components/Footer";
+import DescriptionTabs from "../../Components/DescriptionTabs";
+import { CURRENCY } from "../../constant";
+import "./style.css";
+
 const images = [
   {
     original: "https://picsum.photos/id/1018/2000/2000/",
@@ -69,7 +71,7 @@ const ProductDescription = () => {
           </div>
           <div className="col-md-6 marginTopAndBottom">
             <p className="product-title">VARIABLE PRODUCT</p>
-            <p className="product-price mt-1">$70.00 - $80.00</p>
+            <p className="product-price mt-1">{CURRENCY}70.00 - {CURRENCY}80.00</p>
             <p className="product-description mt-1">
               A-ha Shop is a very slick and clean e-commerce template with
               endless possibilities.
@@ -152,7 +154,7 @@ const ProductDescription = () => {
         <section className="mt-5">
           <DescriptionTabs />
         </section>
-      <Footer/>
+        <Footer />
       </div>
     </div>
   );

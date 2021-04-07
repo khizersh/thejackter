@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
-
-import "react-image-gallery/styles/css/image-gallery.css";
-import { Input } from "reactstrap";
+import { useState } from "react";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import Slider from "react-animated-slider";
+import "react-image-gallery/styles/css/image-gallery.css";
 import "react-animated-slider/build/horizontal.css";
-import { Images } from "../../constant";
+
+import { CURRENCY, Images } from "../../constant";
+
 const CustomModal = (props) => {
   const { className, showModal, setShowModal } = props;
 
@@ -41,7 +41,7 @@ const CustomModal = (props) => {
             </div>
             <div className="col-md-6 marginTopAndBottom  ">
               <p className="product-title">VARIABLE PRODUCT</p>
-              <p className="product-price my-3">$70.00 - $80.00</p>
+              <p className="product-price my-3">{CURRENCY}70.00 - {CURRENCY}80.00</p>
               <p className="product-description my-3">
                 A-ha Shop is a very slick and clean e-commerce template with
                 endless possibilities.
