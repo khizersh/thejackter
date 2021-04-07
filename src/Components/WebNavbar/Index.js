@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { BiUser, BiHeart } from "react-icons/bi";
+import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { RiPagesLine } from "react-icons/ri";
 

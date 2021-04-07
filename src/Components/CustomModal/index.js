@@ -33,8 +33,10 @@ const CustomModal = (props) => {
               <Slider>
                 {Images.map((slide, index) => (
                   <img
+                    key={index}
                     src={slide.original}
                     style={{ width: "400px", height: "500px" }}
+                    alt={slide.originalClass}
                   />
                 ))}
               </Slider>
