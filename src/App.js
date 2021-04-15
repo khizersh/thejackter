@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
-import './App.css';
+import "./App.css";
 
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
 import Home from "./Views/Home";
 import ProductDescription from "./Views/ProductDescription";
+import Cart from "./Views/Cart"
 
 function App() {
   return (
@@ -19,15 +20,11 @@ function App() {
           <Route exact path="/product/:slug">
             <ProductDescription />
           </Route>
-          {/* <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route> */}
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
         </Switch>
       </Router>
-      {/* <ProductDescription /> */}
     </div>
   );
 }

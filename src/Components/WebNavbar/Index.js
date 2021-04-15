@@ -3,6 +3,7 @@ import "./style.css";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { RiPagesLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const WebNavbar = () => {
   const [isMobile, setIsMobile] = useState("");
@@ -33,7 +34,7 @@ const WebNavbar = () => {
               />
             </div>
           </div>
-          <div className=" d-flex justify-content-end">
+          <div className=" d-flex justify-content-end align-items-center">
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
               <BiUser className="icon" />
               <p className="icon_name">Sigin In</p>
@@ -43,10 +44,12 @@ const WebNavbar = () => {
               <BsBag className="icon" />
               <p className="icon_name">Favourites</p>
             </span>
-            <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
-              <RiPagesLine className="icon" />
-              <p className="icon_name">Bag</p>
-            </span>
+            <Link to="/cart">
+              <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
+                <RiPagesLine className="icon" />
+                <p className="icon_name">Bag</p>
+              </span>
+            </Link>
           </div>
         </div>
       </div>
