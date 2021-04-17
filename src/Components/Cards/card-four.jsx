@@ -10,7 +10,7 @@ const CardFour = (props) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <div className="row mt-2">
-      {props?.products?.length &&
+      {
         props?.products.map((pro, index) => (
           <div className="col-md-3 col-6 p-1 mt-5">
             <Card className="product-card">
@@ -20,7 +20,8 @@ const CardFour = (props) => {
                     <CardImg
                       top
                       width="100%"
-                      src={pro?.image}
+                      // height="400px"
+                      src={`data:image/png;base64,${pro?.imageList[0].picByte}`}
                       alt="Card image cap"
                     />
                   </Link>
@@ -36,7 +37,7 @@ const CardFour = (props) => {
               </div>
               <CardBody className="text-center">
                 <span className="product-title" tag="h5">
-                  <Link to={`/product/${pro?.id}`}>{pro?.title}</Link>
+                  <Link to={`/product/${pro?.id}`}>{pro.title}</Link>
                 </span>
                 <br />
                 <span tag="h6" className="mb-2 product-price">

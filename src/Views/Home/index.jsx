@@ -1,9 +1,21 @@
+import React, { useEffect, useState } from "react";
+
 import SliderComponent from "../../Components/Slider";
 import CardFour from "../../Components/Cards/card-four";
-import Footer from "../../Components/Footer"
+import Footer from "../../Components/Footer";
+import { getAllProducts } from "../../api/index";
 import { slides, products } from "../../constant";
 import "./style.css";
 const Home = () => {
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    getAllProductsWrapper();
+  }, []);
+  const getAllProductsWrapper = async () => {
+    const data = await getAllProducts();
+   
+    setProducts(data.data);
+  };
   return (
     <div className="mt-4">
       <SliderComponent slides={slides} />

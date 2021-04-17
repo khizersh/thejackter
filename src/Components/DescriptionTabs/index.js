@@ -2,7 +2,7 @@ import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { Table } from "reactstrap";
 import "react-tabs/style/react-tabs.css";
-const index = () => {
+const index = ({ detail }) => {
   return (
     <div>
       <Tabs>
@@ -14,18 +14,7 @@ const index = () => {
 
         <TabPanel className="mt-5">
           <h2 className="pb-4 product-description-tab">Description</h2>
-          <p>
-            We possess within us two minds. So far I have written only of the
-            conscious mind. I would now like to introduce you to your second
-            mind, the hidden and mysterious subconscious. Our subconscious mind
-            contains such power and complexity that it literally staggers the
-            imagination.And finally the subconscious is the mechanism through
-            which thought impulses which are repeated regularly with feeling and
-            emotion are quickened, charged. Our subconscious mind contains such
-            power and complexity that it literally staggers the imagination.And
-            finally the subconscious is the mechanism through which thought
-            impulses.
-          </p>
+          <p>{detail?.description}</p>
         </TabPanel>
         <TabPanel>
           <h2 className="pb-4 product-description-tab">
@@ -63,11 +52,11 @@ const index = () => {
           </Table>
         </TabPanel>
         <TabPanel>
-          <h2 className="pb-4 product-description-tab">
-            Reviews
-          </h2>
+          <h2 className="pb-4 product-description-tab">Reviews</h2>
           <p>There are no reviews yet.</p>
-          <p  style={{letterSpacing:"2px"}}>Be the first to review “Minty Dress</p>
+          <p style={{ letterSpacing: "2px" }}>
+            Be the first to review “Minty Dress
+          </p>
           <p>
             You must be <span style={{ color: "#337ab7" }}>logged in</span> to
             post a review

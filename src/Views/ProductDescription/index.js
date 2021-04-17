@@ -2,11 +2,13 @@ import { FormGroup, Input, Label } from "reactstrap";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-
+import { getProductById } from "../../api/index";
 import Footer from "../../Components/Footer";
 import DescriptionTabs from "../../Components/DescriptionTabs";
 import { CURRENCY } from "../../constant";
 import "./style.css";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const images = [
   {
@@ -52,11 +54,24 @@ const images = [
   },
 ];
 const ProductDescription = () => {
+  const { slug } = useParams();
+  console.log(slug);
+  const [detail, setDetail] = useState();
+  useEffect(() => {
+    getProductByIdWrapper();
+  }, []);
+  const getProductByIdWrapper = async () => {
+    const data = await getProductById(slug);
+    setDetail(data.data);
+
+    
+  };
+  
   return (
     <div className="my-5">
       <div className="container">
         <div className="row w-100 ">
-          <div className="col-md-6  d-flex justify-content-center align-items-center">
+          <div className="col-md-6   d-flex justify-content-center align-items-center">
             <ImageGallery
               items={images}
               showThumbnails={true}
@@ -71,11 +86,10 @@ const ProductDescription = () => {
           </div>
           <div className="col-md-6 marginTopAndBottom">
             <p className="product-title">VARIABLE PRODUCT</p>
-            <p className="product-price mt-1">{CURRENCY}70.00 - {CURRENCY}80.00</p>
-            <p className="product-description mt-1">
-              A-ha Shop is a very slick and clean e-commerce template with
-              endless possibilities.
+            <p className="product-price mt-1">
+              {CURRENCY}70.00 - {CURRENCY}80.00
             </p>
+            <p className="product-description mt-1">{detail?.description}</p>
             <FormGroup>
               <Label for="exampleSelect" className="attributes-heading">
                 Color
@@ -87,12 +101,16 @@ const ProductDescription = () => {
                 id="exampleSelect"
               >
                 <option className="custom-option-description" disabled>
-                  Choose an Option
+                  Choose an Optioan
                 </option>
-                <option className="custom-option-description">Black</option>
-                <option className="custom-option-description">Green</option>
-                <option className="custom-option-description">Yellow</option>
-                <option className="custom-option-description">Purple</option>
+                {detail &&
+                  detail?.attributeList
+                    .filter((attr) => attr?.parentTitle === "Color")
+                    .map((attribute) => (
+                      <option className="custom-option-description">
+                        {attribute?.childAttributeList[0]?.title}
+                      </option>
+                    ))}
               </Input>
             </FormGroup>
             <FormGroup>
@@ -108,10 +126,16 @@ const ProductDescription = () => {
                 <option className="custom-option-description" disabled>
                   Choose an Option
                 </option>
-                <option className="custom-option-description">Sm</option>
-                <option className="custom-option-description">L</option>
-                <option className="custom-option-description">M</option>
-                <option className="custom-option-description">XL</option>
+                {detail &&
+                  detail?.attributeList
+                    .filter((attr) => attr.parentTitle === "Size")
+                    .map((attribute) =>
+                      attribute.childAttributeList.map((nestedAttribute) => (
+                        <option className="custom-option-description">
+                          {nestedAttribute?.title}
+                        </option>
+                      ))
+                    )}
               </Input>
             </FormGroup>
             <div className="d-flex justify-content-between align-items-center">
@@ -128,13 +152,13 @@ const ProductDescription = () => {
               <button className="btn btn-dark btn-lg mt-3">Buy Now</button>
             </div>
             <div className="mt-3">
-              <p>SKU: ahoooo1</p>
+              {/* <p>SKU: ahoooo1</p> */}
               <div className="product-description-links">
-                Categories: <span>Bags</span>,<span>Clothes Women</span>
+                Categories: <span>{detail?.categoryName}</span>
               </div>
-              <div className="product-description-links">
+              {/* <div className="product-description-links">
                 Tags: <span>Dress</span>,<span>Women</span>
-              </div>
+              </div> */}
             </div>
             <div className="mt-3 d-flex">
               Share :{" "}
@@ -152,7 +176,7 @@ const ProductDescription = () => {
         </div>
         {/* Tabs */}
         <section className="mt-5">
-          <DescriptionTabs />
+          <DescriptionTabs detail={detail} />
         </section>
         <Footer />
       </div>

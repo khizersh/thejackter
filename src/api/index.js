@@ -57,9 +57,9 @@ export const getAllProducts = function () {
     });
 };
 
-export const getProductById = function (id) {
+export const getProductById = function (slug) {
   return axios
-    .get(BASE_URL + "/product/detail/" + id)
+    .get(BASE_URL + "/product/detail/" + slug)
     .then(function (response) {
       return response.data;
     })
