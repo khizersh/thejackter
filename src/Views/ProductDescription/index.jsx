@@ -186,7 +186,7 @@ const ProductDescription = () => {
                 <button
                   className="btn btn-info "
                   onClick={addtocart}
-                  disabled={state.some((e) => e.id == slug)}
+                  disabled={state.some((e) => e.id === slug)}
                 >
                   Add to Cart
                 </button>

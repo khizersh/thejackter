@@ -12,9 +12,13 @@ const Home = () => {
     getAllProductsWrapper();
   }, []);
   const getAllProductsWrapper = async () => {
-    const data = await getAllProducts();
-   
-    setProducts(data.data);
+    try {
+      const data = await getAllProducts();
+     
+      setProducts(data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="mt-4">

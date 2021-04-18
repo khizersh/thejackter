@@ -7,8 +7,9 @@ import "./App.css";
 
 import NavbarWrapper from "./Components/NavbarWrapper/Index";
 import Home from "./Views/Home";
-import ProductDescription from "./Views/ProductDescription";
+import ProductDescription from "./Views/ProductDescription/index";
 import Cart from "./Views/Cart";
+import Categories from "./Views/Categories";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
               </Route>
               <Route exact path="/cart">
                 <Cart />
+              </Route>
+              <Route exact path="/categories">
+                <Categories />
               </Route>
             </Switch>
           </Router>

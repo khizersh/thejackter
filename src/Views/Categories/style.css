@@ -1,0 +1,16 @@
+.card-wrapper{
+    margin-top: 100px;
+}
+
+.left-wrapper{
+    margin-top: -50px;
+}
+
+.right-wrapper {
+  margin-top: 200px;
+  padding: 0;
+}
+
+.right-wrapper img {
+  float: right;
+}
