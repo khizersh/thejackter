@@ -23,7 +23,7 @@ const Categories = () => {
   return (
     <Container className="mt-5">
       <Row>
-        <Col md={3} className="p-0">
+        <Col sm={0} md={3} className="p-0 filter">
           <section>
             <h5>MEN'S COLLECTION:</h5>
             <ul>
@@ -52,6 +52,8 @@ const Categories = () => {
             {categories?.length
               ? categories.map((cat, ind) => (
                   <Col
+                    xs={6}
+                    sm={6}
                     md={6}
                     className={ind % 2 === 0 ? "left-wrapper" : "right-wrapper"}
                   >

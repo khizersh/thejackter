@@ -52,7 +52,7 @@ const CartFooter = () => {
           <div>
             <img
               src="https://www.ullapopken.eu/images/cms/hc7/hc0/8909011615774.png"
-              alt=""
+              alt="footer"
             />
           </div>
           <div>
@@ -60,6 +60,7 @@ const CartFooter = () => {
             <img
               className="ml-3"
               src="https://www.ullapopken.eu/images/cms/hbe/h86/8814213791774.png"
+              alt="footer"
             />
           </div>
         </div>

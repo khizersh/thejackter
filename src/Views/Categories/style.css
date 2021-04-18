@@ -1,9 +1,9 @@
-.card-wrapper{
-    margin-top: 100px;
+.card-wrapper {
+  margin-top: 100px;
 }
 
-.left-wrapper{
-    margin-top: -50px;
+.left-wrapper {
+  margin-top: -50px;
 }
 
 .right-wrapper {
@@ -13,4 +13,20 @@
 
 .right-wrapper img {
   float: right;
+}
+
+@media (max-width: 991px) {
+  .filter {
+    display: none;
+  }
+  .left-wrapper, .right-wrapper {
+    margin-top: 0px;
+    padding: 0px;
+  }
+  .right-wrapper img {
+    float: none;
+  }
+  .card-wrapper {
+    margin-top: 10px;
+  }
 }
