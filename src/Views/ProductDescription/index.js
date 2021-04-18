@@ -9,7 +9,8 @@ import { CURRENCY } from "../../constant";
 import "./style.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { add_to_cart } from "../../Store/actions/cart";
 const images = [
   {
     original: "https://picsum.photos/id/1018/2000/2000/",
@@ -54,8 +55,11 @@ const images = [
   },
 ];
 const ProductDescription = () => {
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
   const { slug } = useParams();
-  console.log(slug);
   const [detail, setDetail] = useState();
   useEffect(() => {
     getProductByIdWrapper();
@@ -63,10 +67,22 @@ const ProductDescription = () => {
   const getProductByIdWrapper = async () => {
     const data = await getProductById(slug);
     setDetail(data.data);
-
-    
   };
-  
+
+  const addtocart = () => {
+    let cartItemObj = {
+      id: detail.id,
+      itemName: detail?.title,
+      itemImage: detail.imageList[0].picByte,
+      attribute: {
+        color,
+        size,
+      },
+      quantity,
+    };
+    console.log(cartItemObj);
+    dispatch(add_to_cart(cartItemObj));
+  };
   return (
     <div className="my-5">
       <div className="container">
@@ -85,7 +101,7 @@ const ProductDescription = () => {
             />
           </div>
           <div className="col-md-6 marginTopAndBottom">
-            <p className="product-title">VARIABLE PRODUCT</p>
+            <p className="product-title">{detail?.title}</p>
             <p className="product-price mt-1">
               {CURRENCY}70.00 - {CURRENCY}80.00
             </p>
@@ -99,6 +115,8 @@ const ProductDescription = () => {
                 type="select"
                 name="Color"
                 id="exampleSelect"
+                value={color}
+                onChange={(e) => setColor(e.target.value)}
               >
                 <option className="custom-option-description" disabled>
                   Choose an Optioan
@@ -106,8 +124,8 @@ const ProductDescription = () => {
                 {detail &&
                   detail?.attributeList
                     .filter((attr) => attr?.parentTitle === "Color")
-                    .map((attribute) => (
-                      <option className="custom-option-description">
+                    .map((attribute, index) => (
+                      <option className="custom-option-description" key={index}>
                         {attribute?.childAttributeList[0]?.title}
                       </option>
                     ))}
@@ -120,8 +138,10 @@ const ProductDescription = () => {
               <Input
                 className="select-menu"
                 type="select"
-                name="Color"
+                name="size"
                 id="size"
+                value={size}
+                onChange={(e) => setSize(e.target.value)}
               >
                 <option className="custom-option-description" disabled>
                   Choose an Option
@@ -130,22 +150,41 @@ const ProductDescription = () => {
                   detail?.attributeList
                     .filter((attr) => attr.parentTitle === "Size")
                     .map((attribute) =>
-                      attribute.childAttributeList.map((nestedAttribute) => (
-                        <option className="custom-option-description">
-                          {nestedAttribute?.title}
-                        </option>
-                      ))
+                      attribute.childAttributeList.map(
+                        (nestedAttribute, index) => (
+                          <option
+                            className="custom-option-description"
+                            key={index}
+                          >
+                            {nestedAttribute?.title}
+                          </option>
+                        )
+                      )
                     )}
               </Input>
             </FormGroup>
             <div className="d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-center align-items-center">
-                <div className="custom-box">-</div>
-                <div className="custom-box">1</div>
-                <div className="custom-box">+</div>
+                <div
+                  className="custom-box"
+                  onClick={() =>
+                    setQuantity(quantity <= 1 ? quantity-0 : quantity - 1)
+                  }
+                >
+                  -
+                </div>
+                <div className="custom-box">{quantity}</div>
+                <div
+                  className="custom-box"
+                  onClick={() => setQuantity(quantity + 1)}
+                >
+                  +
+                </div>
               </div>
               <div>
-                <button className="btn btn-info ">Add to Cart</button>
+                <button className="btn btn-info " onClick={addtocart}>
+                  Add to Cart
+                </button>
               </div>
             </div>
             <div>

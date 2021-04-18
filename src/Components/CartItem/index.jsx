@@ -1,23 +1,26 @@
 import React from "react";
-import "./style.css"
-const CartItem = () => {
+import "./style.css";
+import { useDispatch } from "react-redux";
+import { remove_from_cart } from "../../Store/actions/cart";
+const CartItem = ({ item }) => {
+  const dispatch = useDispatch();
+  const removeCart = () => {
+    dispatch(remove_from_cart(item.id));
+  };
   return (
     <div className="col-md-12 p-0 my-2">
       <div className="item-content-wrapper d-flex ">
         <div>
           <img
-            src={
-              "https://assets.ullapopken.de/images/products/74883210_model_g_30.jpg"
-            }
+            src={`data:image/png;base64,${item.itemImage}`}
             className="cart-image"
+            alt="Item Image"
           />
         </div>
         <div className="pl-2 w-100">
-          <p className="font-weight-bold">
-            Salt and Pepper Tweed Full Lined Coat
-          </p>
-          <p className="no-space text-small">Color: Black</p>
-          <p className="no-space">Size: 28/30 regular</p>
+          <p className="font-weight-bold">{item.itemName}</p>
+          {/* <p className="no-space text-small">Color: {item.attribute.color}</p>
+          <p className="no-space">Size: {item.attribute.size}</p> */}
           <div className="d-flex justify-content-end no-space ">
             <p className="font-weight-bold float-right">$ 1293.95</p>
           </div>
@@ -29,7 +32,9 @@ const CartItem = () => {
                 <option value="mercedes">Mercedes</option>
                 <option value="audi">Audi</option>
               </select>
-              <button className="btn btn-light delete-btn">X Delete</button>
+              <button className="btn btn-light delete-btn" onClick={removeCart}>
+                X Delete
+              </button>
             </div>
             <p className="text-available">
               Available - Delivery in 2-7 business days

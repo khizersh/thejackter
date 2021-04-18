@@ -36,6 +36,16 @@
   width: auto !important;
   outline: none !important;
 }
+.cartnumber {
+  background-color: #fe8273 !important ;
+  border-radius: 50%;
+  text-align: center;
+  align-self: center;
+  font-size: 10px;
+  color: #f2f2f2;
+  height: 15px;
+  width: 15px;
+}
 /* Media Queries */
 @media (max-width: 1200px) {
   .nav-item {

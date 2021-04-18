@@ -4,10 +4,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Sidebar from "../Sidebar/Index";
 import { RiPagesLine } from "react-icons/ri";
 import "./style.css";
-
+import {useSelector} from "react-redux"
 import { BsSearch } from "react-icons/bs";
 const MobileNavbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const state = useSelector((state) => state.cartReducer.cartArray);
   return (
     <div className="main-MobileNavbar">
       <div className="divider d-flex justify-content-between align-items-center   w-100">
@@ -29,6 +30,7 @@ const MobileNavbar = () => {
               <p className="icon_name ">Sign In</p>
             </span>
             <span className="icon-Hover d-flex flex-column mx-2 align-items-center">
+              <span className="cartnumber">{state.length}</span>
               <RiPagesLine className="icon" />
               <p className="icon_name">Bag</p>
             </span>

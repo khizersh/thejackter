@@ -4,7 +4,11 @@ import CartItem from "../../Components/CartItem";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { TiStarburst } from "react-icons/ti";
 import CartFooter from "../../Components/CartFooter";
+import { useSelector } from "react-redux";
+
 const Cart = () => {
+  const state = useSelector((state) => state.cartReducer.cartArray);
+  if (!state.length) return <h1 className="d-flex justify-content-center align-items-center my-5">No Item Added</h1>;
   return (
     <div className="cart-wrapper mt-5 pt-5">
       <div className="container pt-3  item-main-wrapper">
@@ -12,10 +16,11 @@ const Cart = () => {
           <div className="col-lg-7 my-3 bg-white p-3 cartItem-wrapper mr-2">
             <div className="d-flex justify-content-between">
               <p className="font-weight-bold mt-1">Bag</p>
-              <p>2 items</p>
+              <p>{state.length} items</p>
             </div>
-            <CartItem />
-            <CartItem />
+            {state.map((item) => (
+              <CartItem item={item} key={item.id} />
+            ))}
           </div>
           <div className="col-lg-4  my-3 ">
             <div className="item-main-wrapper bg-white py-3 px-4">
@@ -74,27 +79,27 @@ const Cart = () => {
       </div>
       <div className="mt-3 container-fluid features-wrapper justify-content-center align-items-center">
         <div className="container">
-        <div className="row justify-content-center align-items-center">
-          <div className="col-lg-3 col-sm-6 col-6 feature-item">
-            <TiStarburst color={"white"} />
-            <p>All sizes same price</p>
+          <div className="row justify-content-center align-items-center">
+            <div className="col-lg-3 col-sm-6 col-6 feature-item">
+              <TiStarburst color={"white"} />
+              <p>All sizes same price</p>
+            </div>
+            <div className="col-lg-3 col-sm-6 col-6 feature-item">
+              <TiStarburst color={"white"} />
+              <p>Return With 60 Days</p>
+            </div>
+            <div className="col-lg-3 col-sm-6 col-6 feature-item">
+              <TiStarburst color={"white"} />
+              <p>SSl Data Security</p>
+            </div>
+            <div className="col-lg-3 col-sm-6 col-6 feature-item">
+              <TiStarburst color={"white"} />
+              <p>Flat express Shipping Rate</p>
+            </div>
           </div>
-          <div className="col-lg-3 col-sm-6 col-6 feature-item">
-            <TiStarburst color={"white"} />
-            <p>Return With 60 Days</p>
-          </div>
-          <div className="col-lg-3 col-sm-6 col-6 feature-item">
-            <TiStarburst color={"white"} />
-            <p>SSl Data Security</p>
-          </div>
-          <div className="col-lg-3 col-sm-6 col-6 feature-item">
-            <TiStarburst color={"white"} />
-            <p>Flat express Shipping Rate</p>
-          </div>
-        </div>
         </div>
       </div>
-      <CartFooter/>
+      <CartFooter />
     </div>
   );
 };

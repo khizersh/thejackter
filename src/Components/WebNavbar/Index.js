@@ -4,9 +4,10 @@ import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { RiPagesLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const WebNavbar = () => {
   const [isMobile, setIsMobile] = useState("");
+  const state = useSelector((state) => state.cartReducer.cartArray);
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -16,6 +17,7 @@ const WebNavbar = () => {
       },
       false
     );
+  
   }, [isMobile]);
   return (
     <div className="main-webnavbar ">
@@ -46,6 +48,7 @@ const WebNavbar = () => {
             </span>
             <Link to="/cart">
               <span className="icon-Hover d-flex flex-column mx-2 align-items-center justify-content-center">
+                <span className="cartnumber">{state.length}</span>
                 <RiPagesLine className="icon" />
                 <p className="icon_name">Bag</p>
               </span>
