@@ -55,6 +55,7 @@ const images = [
   },
 ];
 const ProductDescription = () => {
+  const state = useSelector((state) => state.cartReducer.cartArray);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -80,7 +81,7 @@ const ProductDescription = () => {
       },
       quantity,
     };
-    console.log(cartItemObj);
+
     dispatch(add_to_cart(cartItemObj));
   };
   return (
@@ -168,7 +169,7 @@ const ProductDescription = () => {
                 <div
                   className="custom-box"
                   onClick={() =>
-                    setQuantity(quantity <= 1 ? quantity-0 : quantity - 1)
+                    setQuantity(quantity <= 1 ? quantity - 0 : quantity - 1)
                   }
                 >
                   -
@@ -182,7 +183,11 @@ const ProductDescription = () => {
                 </div>
               </div>
               <div>
-                <button className="btn btn-info " onClick={addtocart}>
+                <button
+                  className="btn btn-info "
+                  onClick={addtocart}
+                  disabled={state.some((e) => e.id == slug)}
+                >
                   Add to Cart
                 </button>
               </div>
