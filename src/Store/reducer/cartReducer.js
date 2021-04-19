@@ -5,7 +5,6 @@ const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case "Add_TO_CART": {
       if (state.cartArray.find((x) => x.id === action.data.id)) {
-        alert("Already Added");
         return state;
       }
       console.log("Cart added");

@@ -7,8 +7,9 @@ import { CURRENCY } from "../../constant";
 import "./style.css";
 
 const CardFour = (props) => {
+  console.log("props", props);
   const [showModal, setShowModal] = useState(false);
-  const [detail, setDetail] = useState();
+  const [detail, setDetail] = useState([]);
   return (
     <div className="row mt-2">
       {props?.products.map((pro, index) => (
@@ -49,7 +50,6 @@ const CardFour = (props) => {
               </span>
             </CardBody>
           </Card>
-       
         </div>
       ))}
       {showModal && (

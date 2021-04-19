@@ -10,6 +10,7 @@ import Home from "./Views/Home";
 import ProductDescription from "./Views/ProductDescription/index";
 import Cart from "./Views/Cart";
 import Categories from "./Views/Categories";
+import CategoryProducts from "./Views/CategoryProducts";
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
               </Route>
               <Route exact path="/categories">
                 <Categories />
+              </Route>
+              <Route exact path="/categories/:slug">
+                <CategoryProducts />
               </Route>
             </Switch>
           </Router>

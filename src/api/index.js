@@ -56,6 +56,16 @@ export const getAllProducts = function () {
       console.log(error);
     });
 };
+export const getProductsByCategory = function (slug) {
+  return axios
+    .get(BASE_URL + "/product/category/" + slug)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
 
 export const getProductById = function (slug) {
   return axios
