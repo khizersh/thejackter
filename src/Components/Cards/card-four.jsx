@@ -40,13 +40,13 @@ const CardFour = (props) => {
               </div>
             </div>
             <CardBody className="text-center">
-              <span className="product-title" tag="h5">
+              <span className="card-product-title" tag="h5">
                 <Link to={`/product/${pro?.id}`}>{pro.title}</Link>
               </span>
               <br />
-              <span tag="h6" className="mb-2 product-price">
+              <span tag="h6" className="mb-2 card-product-price">
                 {CURRENCY}
-                {pro?.price}
+                {pro?.range}
               </span>
             </CardBody>
           </Card>

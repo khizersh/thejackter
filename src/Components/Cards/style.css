@@ -32,7 +32,7 @@
   background: #00b1b7 !important;
 }
 
-.product-title {
+.card-product-title {
   line-height: 14px;
   margin-bottom: 3px;
   color: #666;
@@ -43,13 +43,13 @@
   transition: 0.3s;
 }
 
-.product-title:hover {
+.card-product-title:hover {
   color: #00b1b7;
   cursor: pointer;
 }
 
-.product-price {
-  font-weight: 800;
+.card-product-price {
+  font-weight: 700;
   font-size: 16px;
   margin: 0;
   color: #666;
