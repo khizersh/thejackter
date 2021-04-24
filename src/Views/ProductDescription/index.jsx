@@ -104,65 +104,31 @@ const ProductDescription = () => {
           <div className="col-md-6 marginTopAndBottom">
             <p className="product-title">{detail?.title}</p>
             <p className="product-price mt-1">
-              {CURRENCY}70.00 - {CURRENCY}80.00
+              {CURRENCY} {detail?.range}
             </p>
             <p className="product-description mt-1">{detail?.description}</p>
             <FormGroup>
-              <Label for="exampleSelect" className="attributes-heading">
-                Color
-              </Label>
-              <Input
-                className="select-menu"
-                type="select"
-                name="Color"
-                id="exampleSelect"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-              >
-                <option className="custom-option-description" disabled>
-                  Choose an Optioan
-                </option>
-                {detail &&
-                  detail?.attributeList
-                    .filter((attr) => attr?.parentTitle === "Color")
-                    .map((attribute, index) => (
-                      <option className="custom-option-description" key={index}>
-                        {attribute?.childAttributeList[0]?.title}
-                      </option>
-                    ))}
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label for="size" className="attributes-heading">
-                SIZE
-              </Label>
-              <Input
-                className="select-menu"
-                type="select"
-                name="size"
-                id="size"
-                value={size}
-                onChange={(e) => setSize(e.target.value)}
-              >
-                <option className="custom-option-description" disabled>
-                  Choose an Option
-                </option>
-                {detail &&
-                  detail?.attributeList
-                    .filter((attr) => attr.parentTitle === "Size")
-                    .map((attribute) =>
-                      attribute.childAttributeList.map(
-                        (nestedAttribute, index) => (
-                          <option
-                            className="custom-option-description"
-                            key={index}
-                          >
-                            {nestedAttribute?.title}
-                          </option>
-                        )
-                      )
-                    )}
-              </Input>
+              {detail
+                ? detail?.attributeList.map((attribute, index) => (
+                    <>
+                      <Label for="exampleSelect" className="attributes-heading">
+                        {attribute?.parentTitle}
+                      </Label>
+                      <Input type="select" name="select" id="exampleSelect">
+                        {attribute?.childAttributeList?.length
+                          ? attribute?.childAttributeList.map((attr, ind) => (
+                              <option
+                                className="custom-option-description"
+                                key={ind}
+                              >
+                                {attr?.title}
+                              </option>
+                            ))
+                          : null}
+                      </Input>
+                    </>
+                  ))
+                : null}
             </FormGroup>
             <div className="d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-center align-items-center">
@@ -191,9 +157,9 @@ const ProductDescription = () => {
                   Add to Cart
                 </button>
               </div>
-            </div>
-            <div>
-              <button className="btn btn-dark btn-lg mt-3">Buy Now</button>
+              <div>
+                <button className="btn btn-dark">Buy Now</button>
+              </div>
             </div>
             <div className="mt-3">
               {/* <p>SKU: ahoooo1</p> */}
