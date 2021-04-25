@@ -1,64 +1,26 @@
+import { Fragment, useEffect, useState } from "react";
 import { FormGroup, Input, Label } from "reactstrap";
 import { FaFacebookF, FaPinterestP, FaTwitter } from "react-icons/fa";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { getProductById } from "../../api/index";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Footer from "../../Components/Footer";
 import DescriptionTabs from "../../Components/DescriptionTabs";
+import { getProductById, getPriceByAttruibute } from "../../api/index";
 import { CURRENCY } from "../../constant";
-import "./style.css";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { add_to_cart } from "../../Store/actions/cart";
-const images = [
-  {
-    original: "https://picsum.photos/id/1018/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1018/100/100/",
-  },
-  {
-    original: "https://picsum.photos/id/1015/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1015/100/100/",
-  },
-  {
-    original: "https://picsum.photos/id/1019/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1019/100/100/",
-  },
-  {
-    original: "https://picsum.photos/id/1018/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1018/100/100/",
-  },
-  {
-    original: "https://picsum.photos/id/1015/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1015/100/100/",
-  },
-  {
-    original: "https://picsum.photos/id/1018/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1018/100/100/",
-  },
-  {
-    original: "https://picsum.photos/id/1015/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1015/100/100/",
-  },
-  {
-    original: "https://picsum.photos/id/1019/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1019/100/100/",
-  },
-  {
-    original: "https://picsum.photos/id/1018/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1018/100/100/",
-    originalClass: "hello",
-  },
-  {
-    original: "https://picsum.photos/id/1015/2000/2000/",
-    thumbnail: "https://picsum.photos/id/1015/100/100/",
-  },
-];
+import "./style.css";
+
 const ProductDescription = () => {
   const state = useSelector((state) => state.cartReducer.cartArray);
-  const [color, setColor] = useState("");
-  const [size, setSize] = useState("");
+  const [images, setImages] = useState("");
+  const [attribute, setAttribute] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
   const { slug } = useParams();
   const [detail, setDetail] = useState();
@@ -67,66 +29,118 @@ const ProductDescription = () => {
   }, []);
   const getProductByIdWrapper = async () => {
     const data = await getProductById(slug);
+    if (data.data?.imageList?.length) {
+      let arr = data.data?.imageList.map((img) => ({
+        original: `data:image/png;base64,${img.picByte}`,
+        thumbnail: `data:image/png;base64,${img.picByte}`,
+      }));
+      console.log(arr);
+      setImages(arr);
+    }
+    setImages(data.data?.imageList);
     setDetail(data.data);
   };
 
   const addtocart = () => {
+    if(attribute.length !== detail?.attributeList?.length) return toast.warning('Select All Attributes');
     let cartItemObj = {
       id: detail.id,
       itemName: detail?.title,
       itemImage: detail.imageList[0].picByte,
-      attribute: {
-        color,
-        size,
-      },
+      price: price,
+      // attribute: {
+      //   color,
+      //   size,
+      // },
       quantity,
     };
 
     dispatch(add_to_cart(cartItemObj));
+    toast.success('Added To Cart');
   };
+
+  const onChangeAtrribute = async (val, ind) => {
+    let dup = attribute;
+    dup[ind] = val;
+    console.log(ind);
+    setAttribute(dup);
+
+    console.log(attribute);
+    if (attribute.length === detail?.attributeList?.length) {
+      let data = await getPriceByAttruibute({
+        productId: detail?.id,
+        list: attribute,
+      });
+      setPrice(data?.data);
+      console.log(data);
+    }
+  };
+
   return (
     <div className="my-5">
+       <ToastContainer />
       <div className="container">
         <div className="row w-100 ">
           <div className="col-md-6   d-flex justify-content-center align-items-center">
-            <ImageGallery
-              items={images}
-              showThumbnails={true}
-              showBullets={false}
-              showNav={false}
-              showPlayButton={false}
-              thumbnailPosition={"left"}
-              infinite={true}
-              useBrowserFullscreen={true}
-              showFullscreenButton={true}
-            />
+            {images?.length ? (
+              <ImageGallery
+                items={images}
+                showThumbnails={true}
+                showBullets={false}
+                showNav={false}
+                showPlayButton={false}
+                thumbnailPosition={"left"}
+                infinite={true}
+                useBrowserFullscreen={true}
+                showFullscreenButton={true}
+              />
+            ) : null}
+
+            {/* Test*/}
+            {images.length && <img src={images[0].original} />}
           </div>
           <div className="col-md-6 marginTopAndBottom">
             <p className="product-title">{detail?.title}</p>
             <p className="product-price mt-1">
-              {CURRENCY} {detail?.range}
+              {CURRENCY} {price ? price : detail?.range}
             </p>
             <p className="product-description mt-1">{detail?.description}</p>
             <FormGroup>
               {detail
                 ? detail?.attributeList.map((attribute, index) => (
-                    <>
+                    <Fragment key={index}>
                       <Label for="exampleSelect" className="attributes-heading">
                         {attribute?.parentTitle}
                       </Label>
-                      <Input type="select" name="select" id="exampleSelect">
-                        {attribute?.childAttributeList?.length
-                          ? attribute?.childAttributeList.map((attr, ind) => (
-                              <option
-                                className="custom-option-description"
-                                key={ind}
-                              >
-                                {attr?.title}
-                              </option>
-                            ))
-                          : null}
+                      <Input
+                        type="select"
+                        name="select"
+                        id="exampleSelect"
+                        onChange={(e) =>
+                          onChangeAtrribute(e.target.value, index)
+                        }
+                      >
+                        <>
+                          <option
+                            className="custom-option-description"
+                            value=""
+                          >
+                            Select {attribute?.parentTitle.toLowerCase()}
+                          </option>
+                          {attribute?.childAttributeList?.length
+                            ? attribute?.childAttributeList.map((attr, ind) => (
+                                <option
+                                  className="custom-option-description"
+                                  value={attr?.title}
+                                  key={ind}
+                                >
+                                  {attr?.title}
+                                </option>
+                              ))
+                            : null}
+                        </>
                       </Input>
-                    </>
+                    </Fragment>
                   ))
                 : null}
             </FormGroup>
@@ -164,7 +178,10 @@ const ProductDescription = () => {
             <div className="mt-3">
               {/* <p>SKU: ahoooo1</p> */}
               <div className="product-description-links">
-                Categories: <span>{detail?.categoryName}</span>
+                Categories:{" "}
+                <Link to={`/category/${detail?.categoryId}`}>
+                  {detail?.categoryName}
+                </Link>
               </div>
               {/* <div className="product-description-links">
                 Tags: <span>Dress</span>,<span>Women</span>

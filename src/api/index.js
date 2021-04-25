@@ -88,3 +88,14 @@ export const getProductById = function (slug) {
       console.log(error);
     });
 };
+
+export const getPriceByAttruibute = function (body) {
+  return axios
+    .post(BASE_URL + "/price-attribute/price", body)
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
