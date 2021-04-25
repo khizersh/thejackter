@@ -33,7 +33,7 @@ const CustomModal = (props) => {
       },
       quantity,
     };
-    console.log(cartItemObj);
+    // console.log(cartItemObj);
     dispatch(add_to_cart(cartItemObj));
   };
   return (
