@@ -22,7 +22,7 @@ const CardFour = (props) => {
                     top
                     width="100%"
                     // height="400px"
-                    src={`data:image/png;base64,${pro?.imageList[0].picByte}`}
+                    src={`${pro?.imageList[0]?.image}`}
                     alt="Card image cap"
                   />
                 </Link>

@@ -31,8 +31,8 @@ const ProductDescription = () => {
     const data = await getProductById(slug);
     if (data.data?.imageList?.length) {
       let arr = data.data?.imageList.map((img) => ({
-        original: `data:image/png;base64,${img.picByte}`,
-        thumbnail: `data:image/png;base64,${img.picByte}`,
+        original: img.image,
+        thumbnail: img.image,
       }));
       console.log(arr);
       setImages(arr);
@@ -48,10 +48,7 @@ const ProductDescription = () => {
       itemName: detail?.title,
       itemImage: detail.imageList[0].picByte,
       price: price,
-      // attribute: {
-      //   color,
-      //   size,
-      // },
+      attribute: attribute,
       quantity,
     };
 
