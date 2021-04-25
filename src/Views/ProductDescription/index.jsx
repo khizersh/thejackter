@@ -16,7 +16,7 @@ import { add_to_cart } from "../../Store/actions/cart";
 import "./style.css";
 
 const ProductDescription = () => {
-  const state = useSelector((state) => state.cartReducer.cartArray);
+  const cart = useSelector((state) => state.cartReducer.cartArray);
   const [images, setImages] = useState("");
   const [attribute, setAttribute] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -166,7 +166,7 @@ const ProductDescription = () => {
                 <button
                   className="btn btn-info "
                   onClick={addtocart}
-                  disabled={state.some((e) => e.id === slug)}
+                  disabled={cart.some((e) => +e.id === +slug)}
                 >
                   Add to Cart
                 </button>
