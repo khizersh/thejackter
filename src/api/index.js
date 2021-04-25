@@ -46,6 +46,17 @@ export const getChildCategories = function () {
     });
 };
 
+export const getParentCategoriesWithChild = function () {
+  return axios
+    .get(BASE_URL + "/parentCategory/withChild")
+    .then(function (response) {
+      return response.data;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
 export const getAllProducts = function () {
   return axios
     .get(BASE_URL + "/product")

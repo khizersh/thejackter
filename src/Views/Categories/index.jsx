@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
 
-import { getChildCategories } from "../../api";
+import { getChildCategories, getParentCategoriesWithChild } from "../../api";
 import CategoryCard from "../../Components/Cards/category-card";
 
 import "./style.css";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
+  const [parentCategories, setParentCategories] = useState([]);
   useEffect(() => {
     const getData = async () => {
       try {
         let data = await getChildCategories();
-        console.log(data);
+        let parentCat = await getParentCategoriesWithChild();
+        console.log(parentCat);
         setCategories(data?.data);
+        setParentCategories(parentCat?.data);
       } catch (error) {
         console.log(error);
       }
@@ -24,28 +28,24 @@ const Categories = () => {
     <Container className="mt-5">
       <Row>
         <Col sm={0} md={3} className="p-0 filter">
-          <section>
-            <h5>MEN'S COLLECTION:</h5>
-            <ul>
-              <li>Leather Jackets</li>
-              <li>Biker Jackets</li>
-              <li>Bomber Jackets</li>
-              <li>Biker Jackets</li>
-              <li>Leather Jackets</li>
-              <li>Bomber Jackets</li>
-            </ul>
-          </section>
-          <section>
-            <h5>WOMEN'S COLLECTION:</h5>
-            <ul>
-              <li>Leather Jackets</li>
-              <li>Biker Jackets</li>
-              <li>Bomber Jackets</li>
-              <li>Biker Jackets</li>
-              <li>Leather Jackets</li>
-              <li>Bomber Jackets</li>
-            </ul>
-          </section>
+          {parentCategories?.length
+            ? parentCategories.map((cat, ind) => (
+                <section key={ind}>
+                  <h5>{cat?.title}:</h5>
+                  <ul>
+                    {cat?.childList?.length
+                      ? cat?.childList?.map((child_cat, index) => (
+                          <li key={index}>
+                            <Link to={`/category/${child_cat.id}`}>
+                              {child_cat.childTitle}
+                            </Link>
+                          </li>
+                        ))
+                      : null}
+                  </ul>
+                </section>
+              ))
+            : null}
         </Col>
         <Col md={9}>
           <Row className="card-wrapper">
