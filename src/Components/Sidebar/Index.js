@@ -6,7 +6,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import { BiUser, BiHeart } from "react-icons/bi";
 import { BsBag } from "react-icons/bs";
-const Index = ({ setShowSidebar }) => {
+const Index = ({ setShowSidebar, categories }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -20,32 +20,30 @@ const Index = ({ setShowSidebar }) => {
       </div>
       {/* Content */}
       <div className="mt-5">
-        {/* Gender Choice */}
-        <div className="d-flex">
-          <p className="mr-3">Women</p>
-          <p className="mx-3">Men</p>
-        </div>
-
         <div className="mt-5">
-          <p className="side-nav-link ">New</p>
 
           {/* Accordion / Drop Down */}
-          <div>
-            <div className="custom-drop-down " onClick={toggle}>
-              <p className="side-nav-link">Clothing</p>
-              <div>
-                <MdArrowDropDown className="drop-down-icon" />
-              </div>
-            </div>
-            <Collapse isOpen={isOpen}>
-              <p className="side-nav-link ml-3">Shop By Category</p>
-            </Collapse>
-          </div>
-          {/*////// End Accordion */}
-          <p className="side-nav-link">SleepWares</p>
-          <p className="side-nav-link">Tees</p>
-
-          <p className="side-nav-link">8XL-10XL</p>
+          {categories?.length
+            ? categories.map((cat, ind) => (
+                <div key={ind}>
+                  <div className="custom-drop-down " onClick={toggle}>
+                    <p className="side-nav-link">{cat?.title}</p>
+                    <div>
+                      <MdArrowDropDown className="drop-down-icon" />
+                    </div>
+                  </div>
+                  <Collapse isOpen={isOpen}>
+                    {cat?.childList?.length
+                      ? cat?.childList.map((child_cat, index) => (
+                          <p key={index} className="side-nav-link ml-3">
+                            {child_cat?.childTitle}
+                          </p>
+                        ))
+                      : null}
+                  </Collapse>
+                </div>
+              ))
+            : null}
         </div>
       </div>
       {/* Footer */}

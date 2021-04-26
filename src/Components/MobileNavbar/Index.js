@@ -6,7 +6,7 @@ import { RiPagesLine } from "react-icons/ri";
 import "./style.css";
 import {useSelector} from "react-redux"
 import { BsSearch } from "react-icons/bs";
-const MobileNavbar = () => {
+const MobileNavbar = ({categories}) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const state = useSelector((state) => state.cartReducer.cartArray);
   return (
@@ -45,7 +45,7 @@ const MobileNavbar = () => {
       </div>
       {/* {showSidebar === true && ( */}
       <div className={`${showSidebar ? "show" : "hide"}`}>
-        <Sidebar setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
+        <Sidebar setShowSidebar={setShowSidebar} showSidebar={showSidebar} categories={categories} />
       </div>
       {/* )} */}
     </div>

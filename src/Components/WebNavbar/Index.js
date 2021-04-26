@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
-import "./style.css";
+import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsBag, BsSearch } from "react-icons/bs";
 import { RiPagesLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-const WebNavbar = () => {
-  const [isMobile, setIsMobile] = useState("");
+import "./style.css";
+
+const WebNavbar = ({categories}) => {
+  const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
   useEffect(() => {
     window.addEventListener(
@@ -17,16 +18,13 @@ const WebNavbar = () => {
       },
       false
     );
-  
   }, [isMobile]);
+
   return (
     <div className="main-webnavbar ">
       <div className={`${isMobile ? "container" : "container-fluid"}  `}>
         <div className="row topNavbar justify-content-between">
-          <div className=" d-flex justify-content-start ">
-            <p className="nav-item ">Women</p>
-            <p className="ml-4 nav-item">Men</p>
-          </div>
+          <div className=" d-flex justify-content-start "></div>
           <div className=" d-flex justify-content-center">
             <div>
               <img
@@ -62,11 +60,11 @@ const WebNavbar = () => {
       <div className={`${isMobile ? "container" : "container-fluid"} `}>
         <div className="row align-items-center justify-content-center">
           <div className="col-md-6 d-flex justify-content-start align-items-center mt-2 navItemsList p-0  ">
-            <p className="nav-item ">New Arrivals</p>
-            <p className="nav-item ml-3">Clothing</p>
-            <p className="nav-item ml-3">Active {"&"} Swim</p>
-            <p className="nav-item ml-3">Trends</p>
-            <p className="nav-item ml-3">Our Brands</p>
+            {categories?.length
+              ? categories.map((cat, ind) => (
+                  <p key={ind} className="nav-item ml-4">{cat?.title}</p>
+                ))
+              : null}
           </div>
           <div className="col-md-6 d-flex justify-content-center searchBar_Wrapper">
             <div className="d-flex justify-content-end align-items-center w-100">
