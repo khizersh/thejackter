@@ -61,7 +61,7 @@ const Categories = () => {
                       title={cat.title}
                       link={`/category/${cat.id}`}
                       isLeftAlign={ind % 2 === 0 ? false : true}
-                      img="https://thejacketmaker-images.s3.amazonaws.com/Men-Leather-Jackets-1582970628214.jpg"
+                      img={cat?.image}
                     />
                   </Col>
                 ))

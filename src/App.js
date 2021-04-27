@@ -11,6 +11,7 @@ import ProductDescription from "./Views/ProductDescription/index";
 import Cart from "./Views/Cart";
 import Categories from "./Views/Categories";
 import CategoryProducts from "./Views/CategoryProducts";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <div className="App">
           <Router>
+            <ToastContainer />
             <NavbarWrapper />
             <Switch>
               <Route exact path="/">
@@ -32,7 +34,7 @@ function App() {
               <Route exact path="/categories">
                 <Categories />
               </Route>
-              <Route exact path="/categories/:slug">
+              <Route exact path="/category/:slug">
                 <CategoryProducts />
               </Route>
             </Switch>

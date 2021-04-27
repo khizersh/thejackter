@@ -14,7 +14,7 @@ const CartItem = ({ item }) => {
           <img
             src={`data:image/png;base64,${item.itemImage}`}
             className="cart-image"
-            alt="Item Image"
+            alt=""
           />
         </div>
         <div className="pl-2 w-100">

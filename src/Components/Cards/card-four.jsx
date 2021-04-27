@@ -13,7 +13,7 @@ const CardFour = (props) => {
   return (
     <div className="row mt-2">
       {props?.products.map((pro, index) => (
-        <div className="col-md-3 col-6 p-1 mt-5">
+        <div className="col-md-3 col-6 p-1 mt-5" key={index}>
           <Card className="product-card">
             <div className="product-img-wrapper">
               <div className="product-img-wrapper1">

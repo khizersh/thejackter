@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Footer from "../../Components/Footer";
@@ -75,7 +75,6 @@ const ProductDescription = () => {
 
   return (
     <div className="my-5">
-       <ToastContainer />
       <div className="container">
         <div className="row w-100 ">
           <div className="col-md-6   d-flex justify-content-center align-items-center">

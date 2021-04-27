@@ -152,6 +152,7 @@ const CartFooter = () => {
           <img
             className="ml-3"
             src="https://www.ullapopken.eu/images/cms/hbe/h86/8814213791774.png"
+            alt=""
           />
         </div>
       </div>

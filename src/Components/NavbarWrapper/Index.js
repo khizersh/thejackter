@@ -6,9 +6,11 @@ import "./style.css";
 const Index = () => {
   const [categories, setCategories] = useState([]);
   useEffect(async () => {
-    let parentCat = await getParentCategoriesWithChild();
-    console.log(parentCat);
-    setCategories(parentCat?.data);
+    const getData = async () => {
+      let parentCat = await getParentCategoriesWithChild();
+      setCategories(parentCat?.data);
+    }
+    getData();
   }, []);
   return (
     <div className="mt-3">
