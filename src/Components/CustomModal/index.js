@@ -70,14 +70,14 @@ const CustomModal = (props) => {
           <div className="row w-100 ">
             <div className="col-md-6  d-flex justify-content-center align-items-center">
               <Slider>
-                {Images.map((slide, index) => (
+                {detail?.imageList?.length ? detail?.imageList.map((slide, index) => (
                   <img
                     key={index}
-                    src={slide.original}
+                    src={slide.image}
                     style={{ width: "400px", height: "500px" }}
-                    alt={slide.originalClass}
+                    alt={`img-${index}`}
                   />
-                ))}
+                )) : null}
               </Slider>
             </div>
             <div className="col-md-6 marginTopAndBottom  ">
