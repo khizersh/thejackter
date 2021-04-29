@@ -14,7 +14,7 @@ const Home = () => {
   const getAllProductsWrapper = async () => {
     try {
       const data = await getAllProducts();
-     
+
       setProducts(data.data);
     } catch (error) {
       console.log(error);
@@ -23,6 +23,7 @@ const Home = () => {
   return (
     <div className="mt-4">
       <SliderComponent slides={slides} />
+
       <div className="container">
         <h1 className="text-center font-weight-bold mt-5">New Arrival</h1>
         <CardFour products={products} />

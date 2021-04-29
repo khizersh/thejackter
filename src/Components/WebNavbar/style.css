@@ -46,6 +46,17 @@
   height: 15px;
   width: 15px;
 }
+.dropdownItem {
+  background-color: transparent !important;
+}
+.dropdownMenu {
+  padding: 10px 25px 10px 25px;
+  background-color: white;
+  width: 200px !important;
+}
+.dropdownItem:hover {
+  border-bottom: 1px solid red;
+}
 /* Media Queries */
 @media (max-width: 1200px) {
   .nav-item {

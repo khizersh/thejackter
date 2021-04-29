@@ -5,10 +5,19 @@ import { RiPagesLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./style.css";
-
-const WebNavbar = ({categories}) => {
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+} from "reactstrap";
+const WebNavbar = ({ categories }) => {
   const [isMobile, setIsMobile] = useState(true);
   const state = useSelector((state) => state.cartReducer.cartArray);
+  const [dropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isOpenBox, setIsOpenBox] = useState(null);
+
   useEffect(() => {
     window.addEventListener(
       "resize",
@@ -20,8 +29,22 @@ const WebNavbar = ({categories}) => {
     );
   }, [isMobile]);
 
+  // const toggle = () => {
+  //   setIsDropdownOpen(!dropdownOpen);
+  // };
+
+  const onMouseEnter = (a) => {
+    setIsOpenBox(a);
+    setIsDropdownOpen(true);
+  };
+
+  const onMouseLeave = () => {
+    setIsOpenBox(null);
+    setIsDropdownOpen(false);
+  };
+
   return (
-    <div className="main-webnavbar ">
+    <div className="main-webnavbar">
       <div className={`${isMobile ? "container" : "container-fluid"}  `}>
         <div className="row topNavbar justify-content-between">
           <div className=" d-flex justify-content-start "></div>
@@ -62,9 +85,49 @@ const WebNavbar = ({categories}) => {
           <div className="col-md-6 d-flex justify-content-start align-items-center mt-2 navItemsList p-0  ">
             {categories?.length
               ? categories.map((cat, ind) => (
-                  <p key={ind} className="nav-item ml-4">{cat?.title}</p>
+                  <p
+                    key={ind}
+                    className="nav-item ml-4 hoverMe"
+                    onMouseOver={() => onMouseEnter(ind)}
+                  >
+                    <UncontrolledDropdown
+                      onMouseLeave={onMouseLeave}
+                      isOpen={isOpenBox == ind ? true : false}
+                    >
+                      <DropdownToggle
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "black",
+                          border: "none",
+                          margin: 0,
+                        }}
+                        classNames="categoryButton"
+                      >
+                        {cat?.title}
+                      </DropdownToggle>
+                      <DropdownMenu
+                        className="dropdownMenu"
+                      >
+                        <DropdownItem className="dropdownItem">
+                          Header
+                        </DropdownItem>
+                        <DropdownItem className="dropdownItem">
+                          Action
+                        </DropdownItem>
+                        <DropdownItem className="dropdownItem">
+                          Another Action
+                        </DropdownItem>
+                        <DropdownItem className="dropdownItem" />
+                        <DropdownItem className="dropdownItem">
+                          Another Action
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  </p>
                 ))
               : null}
+
+            {/* </Dropdown> */}
           </div>
           <div className="col-md-6 d-flex justify-content-center searchBar_Wrapper">
             <div className="d-flex justify-content-end align-items-center w-100">

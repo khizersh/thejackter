@@ -1,0 +1,12 @@
+.dropDown_Wrapper {
+  position: absolute;
+  top: 70%;
+  left: 4%;
+  z-index: 2;
+  background-color: white;
+  border: 1px solid black;
+  display: none;
+}
+.hoverMe:hover + .dropDown_Wrapper {
+  display: block;
+}
