@@ -105,9 +105,7 @@ const WebNavbar = ({ categories }) => {
                       >
                         {cat?.title}
                       </DropdownToggle>
-                      <DropdownMenu
-                        className="dropdownMenu"
-                      >
+                      <DropdownMenu className="dropdownMenu">
                         <DropdownItem className="dropdownItem">
                           Header
                         </DropdownItem>
