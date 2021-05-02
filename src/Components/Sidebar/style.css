@@ -2,7 +2,7 @@
   background: #fff;
   height: 100vh;
   padding: 2rem;
-  position: absolute;
+  position: fixed !important;
   top: 0;
   left: 0;
   border-right: 2px solid orangered;
