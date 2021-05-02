@@ -4,8 +4,8 @@ import SliderComponent from "../../Components/Slider";
 import CardFour from "../../Components/Cards/card-four";
 import Footer from "../../Components/Footer";
 import { getAllProducts, getMainBanner } from "../../api/index";
-import { slides } from "../../constant";
 import "./style.css";
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [banners, setBanners] = useState([]);
@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <div className="mt-4">
-      <SliderComponent slides={slides} />
+      <SliderComponent slides={banners} />
 
       <div className="container">
         <h1 className="text-center font-weight-bold mt-5">New Arrival</h1>
