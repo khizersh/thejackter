@@ -17,7 +17,7 @@ import "./style.css";
 
 const ProductDescription = () => {
   const cart = useSelector((state) => state.cartReducer.cartArray);
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
   const [attribute, setAttribute] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
@@ -37,7 +37,7 @@ const ProductDescription = () => {
       console.log(arr);
       setImages(arr);
     }
-    setImages(data.data?.imageList);
+    // setImages(data.data?.imageList);
     setDetail(data.data);
   };
 
@@ -77,7 +77,7 @@ const ProductDescription = () => {
     <div className="my-5">
       <div className="container">
         <div className="row w-100 ">
-          <div className="col-md-6   d-flex justify-content-center align-items-center">
+          <div className="col-md-6 d-flex justify-content-center align-items-center">
             {images?.length ? (
               <ImageGallery
                 items={images}
@@ -93,7 +93,7 @@ const ProductDescription = () => {
             ) : null}
 
             {/* Test*/}
-            {images.length && <img src={images[0].original} />}
+            {/* {images.length && <img src={images[0].original} />} */}
           </div>
           <div className="col-md-6 marginTopAndBottom">
             <p className="product-title">{detail?.title}</p>
