@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, FormGroup, Label, Input } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -7,12 +7,13 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import "react-animated-slider/build/horizontal.css";
 
 import { add_to_cart } from "../../Store/actions/cart";
-import { CURRENCY, Images } from "../../constant";
+import { CURRENCY } from "../../constant";
 import { getPriceByAttruibute } from "../../api";
 
 const CustomModal = (props) => {
   const { detail, className, showModal, setShowModal } = props;
   const cart = useSelector((state) => state.cartReducer.cartArray);
+  const [images, setImages] = useState([]);
   const [modal, setModal] = useState(showModal);
   const [attribute, setAttribute] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -22,6 +23,16 @@ const CustomModal = (props) => {
     setShowModal(!props.showModal);
     setModal(!modal);
   };
+
+  useEffect(() => {
+    if (detail?.imageList?.length) {
+      let arr = detail?.imageList.map((img) => ({
+        original: img.image,
+        thumbnail: img.image,
+      }));
+      setImages(arr);
+    }
+  }, [detail.id]);
 
   const addtocart = () => {
     if(attribute.length !== detail?.attributeList?.length) return toast.warning('Select All Attributes');
@@ -41,10 +52,31 @@ const CustomModal = (props) => {
   const onChangeAtrribute = async (val, ind) => {
     let dup = attribute;
     dup[ind] = val;
-    console.log(ind);
+    // console.log(ind);
     setAttribute(dup);
 
-    console.log(attribute);
+    // console.log(detail?.attributeList);
+    if (!val) {
+      let arr = detail?.imageList.map((img) => ({
+        original: img.image,
+        thumbnail: img.image,
+      }));
+      return setImages(arr);
+    }
+
+    if (detail?.attributeList[ind].multi) {
+      let attrData = detail?.attributeList[ind].childAttributeList.find( e => e.title === dup[ind]);
+      // console.log(attrData);
+      if (attrData && attrData.attributeImage?.length) {
+        // console.log(attrData.attributeImage);
+        let imgArr = attrData.attributeImage.map((img) => ({
+          original: img,
+          thumbnail: img,
+        }));
+        // console.log(imgArr);
+        setImages(imgArr);
+      }
+    }
     if (attribute.length === detail?.attributeList?.length) {
       let data = await getPriceByAttruibute({
         productId: detail?.id,
@@ -70,10 +102,10 @@ const CustomModal = (props) => {
           <div className="row w-100 ">
             <div className="col-md-6  d-flex justify-content-center align-items-center">
               <Slider>
-                {detail?.imageList?.length ? detail?.imageList.map((slide, index) => (
+                {images?.length ? images.map((slide, index) => (
                   <img
                     key={index}
-                    src={slide.image}
+                    src={slide.original}
                     style={{ width: "400px", height: "500px" }}
                     alt={`img-${index}`}
                   />

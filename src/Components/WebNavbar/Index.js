@@ -50,11 +50,13 @@ const WebNavbar = ({ categories }) => {
           <div className=" d-flex justify-content-start "></div>
           <div className=" d-flex justify-content-center">
             <div>
+              <Link to="/">
               <img
                 className="logo"
                 src="https://www.ullapopken.com/medias/logo-ullapopken.svg?context=bWFzdGVyfGltYWdlc3w0MzI4fGltYWdlL3N2Zyt4bWx8aW1hZ2VzL2gxYS9oM2UvODgzMzg3NTExNjA2Mi5zdmd8ZjU3MDdiN2RhMGRlNWIwZDYyNTRkYzkxMWIyNTRmY2Q0OGEwMzFkYmU2MTZiODVhMWIwMzU3M2I0MTJkMzg4OQ"
                 alt="logo"
               />
+              </Link>
             </div>
           </div>
           <div className=" d-flex justify-content-end align-items-center">
@@ -92,7 +94,7 @@ const WebNavbar = ({ categories }) => {
                   >
                     <UncontrolledDropdown
                       onMouseLeave={onMouseLeave}
-                      isOpen={isOpenBox == ind ? true : false}
+                      isOpen={isOpenBox === ind ? true : false}
                     >
                       <DropdownToggle
                         style={{
@@ -106,19 +108,19 @@ const WebNavbar = ({ categories }) => {
                         {cat?.title}
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
-                        <DropdownItem className="dropdownItem">
-                          Header
-                        </DropdownItem>
-                        <DropdownItem className="dropdownItem">
-                          Action
-                        </DropdownItem>
-                        <DropdownItem className="dropdownItem">
-                          Another Action
-                        </DropdownItem>
-                        <DropdownItem className="dropdownItem" />
-                        <DropdownItem className="dropdownItem">
-                          Another Action
-                        </DropdownItem>
+                        {cat?.childList?.length
+                          ? cat?.childList.map((child_cat, index) => (
+                              <DropdownItem
+                                className="dropdownItem"
+                                key={index}
+                              >
+                                <Link to={`/category/${child_cat?.id}`}>
+                                  {" "}
+                                  {child_cat?.childTitle}
+                                </Link>
+                              </DropdownItem>
+                            ))
+                          : null}
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </p>
