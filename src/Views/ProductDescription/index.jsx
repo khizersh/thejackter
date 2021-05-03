@@ -59,17 +59,44 @@ const ProductDescription = () => {
   const onChangeAtrribute = async (val, ind) => {
     let dup = attribute;
     dup[ind] = val;
-    console.log(ind);
+    console.log(val);
     setAttribute(dup);
 
-    console.log(attribute);
+    // console.log(ind);
+    // console.log(attribute);
+    // console.log(detail?.attributeList);
+    // console.log(detail?.attributeList[ind].multi);
+    if (!val) {
+      let arr = detail?.imageList.map((img) => ({
+        original: img.image,
+        thumbnail: img.image,
+      }));
+      return setImages(arr);
+    }
+    if (detail?.attributeList[ind].multi) {
+      let attrData = detail?.attributeList[ind].childAttributeList.find( e => e.title === dup[ind]);
+      console.log(attrData);
+      if (attrData && attrData.attributeImage?.length) {
+        // console.log(attrData.attributeImage);
+        let imgArr = attrData.attributeImage.map((img) => ({
+          original: img,
+          thumbnail: img,
+        }));
+        // console.log(imgArr);
+        setImages(imgArr);
+      }
+    }
     if (attribute.length === detail?.attributeList?.length) {
-      let data = await getPriceByAttruibute({
-        productId: detail?.id,
-        list: attribute,
-      });
-      setPrice(data?.data);
-      console.log(data);
+      try {
+        let data = await getPriceByAttruibute({
+          productId: detail?.id,
+          list: attribute,
+        });
+        setPrice(data?.data);
+        // console.log(data); 
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -91,9 +118,6 @@ const ProductDescription = () => {
                 showFullscreenButton={true}
               />
             ) : null}
-
-            {/* Test*/}
-            {/* {images.length && <img src={images[0].original} />} */}
           </div>
           <div className="col-md-6 marginTopAndBottom">
             <p className="product-title">{detail?.title}</p>
