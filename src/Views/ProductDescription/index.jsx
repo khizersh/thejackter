@@ -5,8 +5,8 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Footer from "../../Components/Footer";
 import DescriptionTabs from "../../Components/DescriptionTabs";
@@ -19,6 +19,7 @@ const ProductDescription = () => {
   const cart = useSelector((state) => state.cartReducer.cartArray);
   const [images, setImages] = useState([]);
   const [attribute, setAttribute] = useState([]);
+  const [color, setColor] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
@@ -42,7 +43,8 @@ const ProductDescription = () => {
   };
 
   const addtocart = () => {
-    if(attribute.length !== detail?.attributeList?.length) return toast.warning('Select All Attributes');
+    if (attribute.length !== detail?.attributeList?.length)
+      return toast.warning("Select All Attributes");
     let cartItemObj = {
       id: detail.id,
       itemName: detail?.title,
@@ -53,13 +55,14 @@ const ProductDescription = () => {
     };
 
     dispatch(add_to_cart(cartItemObj));
-    toast.success('Added To Cart');
+    toast.success("Added To Cart");
   };
 
   const onChangeAtrribute = async (val, ind) => {
     let dup = attribute;
     dup[ind] = val;
-    console.log(val);
+    // console.log(val);
+    setColor(val);
     setAttribute(dup);
 
     // console.log(ind);
@@ -74,7 +77,9 @@ const ProductDescription = () => {
       return setImages(arr);
     }
     if (detail?.attributeList[ind].multi) {
-      let attrData = detail?.attributeList[ind].childAttributeList.find( e => e.title === dup[ind]);
+      let attrData = detail?.attributeList[ind].childAttributeList.find(
+        (e) => e.title === dup[ind]
+      );
       console.log(attrData);
       if (attrData && attrData.attributeImage?.length) {
         // console.log(attrData.attributeImage);
@@ -93,7 +98,7 @@ const ProductDescription = () => {
           list: attribute,
         });
         setPrice(data?.data);
-        // console.log(data); 
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -128,38 +133,66 @@ const ProductDescription = () => {
             <FormGroup>
               {detail
                 ? detail?.attributeList.map((attribute, index) => (
+                    // <></>
+                    // :
                     <Fragment key={index}>
                       <Label for="exampleSelect" className="attributes-heading">
-                        {attribute?.parentTitle}
+                        {attribute?.parentTitle}: {color}
                       </Label>
-                      <Input
-                        type="select"
-                        name="select"
-                        id="exampleSelect"
-                        onChange={(e) =>
-                          onChangeAtrribute(e.target.value, index)
-                        }
-                      >
-                        <>
-                          <option
-                            className="custom-option-description"
-                            value=""
-                          >
-                            Select {attribute?.parentTitle.toLowerCase()}
-                          </option>
+                      {attribute?.parentTitle.toLowerCase() === "color" &&
+                      attribute?.multi ? (
+                        <div>
                           {attribute?.childAttributeList?.length
-                            ? attribute?.childAttributeList.map((attr, ind) => (
-                                <option
-                                  className="custom-option-description"
-                                  value={attr?.title}
-                                  key={ind}
-                                >
-                                  {attr?.title}
-                                </option>
-                              ))
+                            ? attribute?.childAttributeList.map((attr, ind) =>
+                                attr?.attributeImage?.length
+                                  ? attr?.attributeImage.map((attr_img, i) => (
+                                      <img
+                                        src={attr_img}
+                                        key={i}
+                                        width={55}
+                                        height={65}
+                                        className="p-1 m-1 attribute-img"
+                                        onMouseOver={() =>
+                                          onChangeAtrribute(attr?.title, index)
+                                        }
+                                      />
+                                    ))
+                                  : null
+                              )
                             : null}
-                        </>
-                      </Input>
+                        </div>
+                      ) : (
+                        <Input
+                          type="select"
+                          name="select"
+                          id="exampleSelect"
+                          onChange={(e) =>
+                            onChangeAtrribute(e.target.value, index)
+                          }
+                        >
+                          <>
+                            <option
+                              className="custom-option-description"
+                              value=""
+                            >
+                              Select {attribute?.parentTitle.toLowerCase()}
+                            </option>
+                            {attribute?.childAttributeList?.length
+                              ? attribute?.childAttributeList.map(
+                                  (attr, ind) => (
+                                    <option
+                                      className="custom-option-description"
+                                      value={attr?.title}
+                                      key={ind}
+                                    >
+                                      {attr?.title}
+                                    </option>
+                                  )
+                                )
+                              : null}
+                          </>
+                        </Input>
+                      )}
                     </Fragment>
                   ))
                 : null}

@@ -20,6 +20,11 @@
   font-size: 13px;
   vertical-align: middle;
 }
+
+.attribute-img {
+  border: 1px solid gray;
+}
+
 .custom-option-description {
   font-weight: normal !important;
   display: block !important;
@@ -87,7 +92,7 @@
   font-weight: 400;
   letter-spacing: 2px;
 }
-.product-description-tab +p {
+.product-description-tab + p {
   font-size: 14px;
   color: #666;
   font-weight: normal;
