@@ -51,11 +51,11 @@ const WebNavbar = ({ categories }) => {
           <div className=" d-flex justify-content-center">
             <div>
               <Link to="/">
-              <img
-                className="logo"
-                src="https://www.ullapopken.com/medias/logo-ullapopken.svg?context=bWFzdGVyfGltYWdlc3w0MzI4fGltYWdlL3N2Zyt4bWx8aW1hZ2VzL2gxYS9oM2UvODgzMzg3NTExNjA2Mi5zdmd8ZjU3MDdiN2RhMGRlNWIwZDYyNTRkYzkxMWIyNTRmY2Q0OGEwMzFkYmU2MTZiODVhMWIwMzU3M2I0MTJkMzg4OQ"
-                alt="logo"
-              />
+                <img
+                  className="logo"
+                  src="https://www.ullapopken.com/medias/logo-ullapopken.svg?context=bWFzdGVyfGltYWdlc3w0MzI4fGltYWdlL3N2Zyt4bWx8aW1hZ2VzL2gxYS9oM2UvODgzMzg3NTExNjA2Mi5zdmd8ZjU3MDdiN2RhMGRlNWIwZDYyNTRkYzkxMWIyNTRmY2Q0OGEwMzFkYmU2MTZiODVhMWIwMzU3M2I0MTJkMzg4OQ"
+                  alt="logo"
+                />
               </Link>
             </div>
           </div>
@@ -105,7 +105,7 @@ const WebNavbar = ({ categories }) => {
                         }}
                         classNames="categoryButton"
                       >
-                        {cat?.title}
+                        <Link to="/categories">{cat?.title}</Link>
                       </DropdownToggle>
                       <DropdownMenu className="dropdownMenu">
                         {cat?.childList?.length
