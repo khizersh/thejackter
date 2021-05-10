@@ -63,7 +63,7 @@ const Index = () => {
     <div className="mt-4">
       <div className="container-fluid ">
         <img
-          src="https://codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg"
+          src="https://www.williamjacket.com/wp-content/uploads/2019/12/William-Leather-Jacket-Banner-for-Blog.jpg"
           alt="background cover"
           width="100%"
           height="400px"
