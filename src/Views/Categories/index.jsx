@@ -15,7 +15,7 @@ const Categories = () => {
       try {
         let data = await getChildCategories();
         let parentCat = await getParentCategoriesWithChild();
-        console.log(parentCat);
+      
         setCategories(data?.data);
         setParentCategories(parentCat?.data);
       } catch (error) {
